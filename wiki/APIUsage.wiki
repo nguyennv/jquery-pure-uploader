@@ -3,7 +3,7 @@
 
 = Introduction =
 
-The following outlines how to add Pure Uploader to any element within the page. All content
+The following outlines how to add Pure Uploader to any element within the page. All content will be added to this element. 
 
 = Example Usage =
 
