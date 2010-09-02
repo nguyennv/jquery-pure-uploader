@@ -21,8 +21,7 @@
 }
 
 .pure .pure-upload-button {
-    background-color: #CCC;
-    border-bottom:1px solid #999;
+    background-color: #3B3B3B;
     color:#FFFFFF;
     display:block;
     padding:7px 0;
@@ -63,6 +62,10 @@
     width: 380px;
 }
 
+* html .pure .pure-progress {
+	width: 370px;
+}
+
 .pure .pure-bar {
 	background-color: #1E90FF;
 	width: 0;
@@ -79,7 +82,8 @@
 }
 
 * html .pure .pure-cancel {
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/close.png', sizingMethod='scale');
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/close.png');
+    margin-top: -1px;
 }
 /* Only show the cancel button on non HTML5 brwosers once the download has completed */
 
@@ -87,9 +91,9 @@
     display: none;
 }
 
-.pure .pure-entry.iframe.aborted .pure-cancel 
-.pure .pure-entry.iframe.error .pure-cancel 
-.pure .pure-entry.iframe.complete .pure-cancel {
+.pure div.pure-entry.aborted .pure-cancel, 
+.pure div.pure-entry.error .pure-cancel ,
+.pure div.pure-entry.complete .pure-cancel {
     display: block;
 }
 
