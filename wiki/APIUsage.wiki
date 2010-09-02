@@ -18,6 +18,7 @@ The following outlines how to add Pure Uploader to any element within the page. 
 {{{
 $('#elem').pureUploader({
    'url': '/upload.jsp',
+   'uploadAverageSpeed': true, // if true, displays the average speed, otherwise the speed at each tick is displayed.  
    'sizeLimit' : 2 * 1024 * 1024 // 2MB 
 });
 }}}
