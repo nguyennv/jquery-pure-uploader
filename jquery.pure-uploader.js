@@ -376,9 +376,19 @@
 				var elemId = addEntry(file.fileName);
 				if (!elemId)
 				{
-					// Must be a file already in progres with this name.
+					// Must be a file already in progress with this name.
 					return;
 				}
+				
+				var boundary = "-------boundary";
+				
+				var content = '--' + boundary + '\r\n';
+				content += 'Content-Disposition: form-data; name="file";';  
+				content += 'filename="' + encodeURIComponent(file.fileName) + '"';  
+				content += '\r\nContent-Type: application/octet-stream\r\n';  
+				content += '\r\n';
+				content += file.getAsBinary();
+				content += '\r\n--' + boundary + '--\r\n';
 				
 				var xhr = new XMLHttpRequest();
 				onUploadBegin(elemId, xhr, file.fileName, file.size);
@@ -390,15 +400,14 @@
 				xhr.onload = function(e) { onUploadComplete(elemId, e); };
 
 				xhr.open("POST", url, true);
-				xhr.setRequestHeader("Content-Type", "multipart/form-data");
+				xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
 				xhr.setRequestHeader("Cache-Control", "no-cache");
-				xhr.setRequestHeader("Content-Type", "multipart/form-data");
 
 				// pseudo standard fields.
 		        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 		        xhr.setRequestHeader("X-File-Name", file.fileName);
-		        xhr.setRequestHeader("X-File-Size", file.fileSize);
-				xhr.send(file);
+		        xhr.setRequestHeader("Content-Length", file.fileSize);
+				xhr.sendAsBinary(content);
 			}
 			
 			/**
